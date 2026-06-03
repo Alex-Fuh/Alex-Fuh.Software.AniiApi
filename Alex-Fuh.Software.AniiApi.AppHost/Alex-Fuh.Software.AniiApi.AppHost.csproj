@@ -1,0 +1,17 @@
+<Project Sdk="Aspire.AppHost.Sdk/13.0.1">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net9.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <UserSecretsId>6c2a84da-427c-48b7-bc2b-368a43d1ac3f</UserSecretsId>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Alex-Fuh.Software.AniiApi.FrontEnd\Alex-Fuh.Software.AniiApi.FrontEnd.csproj" />
+      <ProjectReference Include="..\Alex-Fuh.Software.AniiApi.ServiceDefaults\Alex-Fuh.Software.AniiApi.ServiceDefaults.csproj" />
+      <ProjectReference Include="..\Alex-Fuh.Software.AniiApi\Alex-Fuh.Software.AniiApi.csproj" />
+    </ItemGroup>
+
+</Project>

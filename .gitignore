@@ -1,0 +1,49 @@
+# Build output
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+[Aa]rtifacts/
+
+# NuGet
+packages/
+*.nupkg
+*.snupkg
+*.nuget.props
+*.nuget.targets
+project.assets.json
+project.nuget.cache
+
+# Visual Studio / Rider / ReSharper
+.vs/
+.idea/
+*.user
+*.userosscache
+*.suo
+*.rsuser
+*.sln.docstates
+*.DotSettings.user
+*.sln.iml
+*.csproj.iml
+riderModule.iml
+_ReSharper*/
+_ReSharper.Caches/
+
+# Test and coverage output
+TestResults/
+coverage/
+coverage.*
+*.coverage
+*.coveragexml
+
+# Local development settings
+appsettings.Local.json
+appsettings.*.local.json
+*.Development.local.json
+launchSettings.local.json
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/

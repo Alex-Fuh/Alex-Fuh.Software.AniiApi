@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/source/">
+    <Project Path="Alex-Fuh.Software.AniiApi.AppHost/Alex-Fuh.Software.AniiApi.AppHost.csproj" />
+    <Project Path="Alex-Fuh.Software.AniiApi.FrontEnd/Alex-Fuh.Software.AniiApi.FrontEnd.csproj" />
+    <Project Path="Alex-Fuh.Software.AniiApi.ServiceDefaults/Alex-Fuh.Software.AniiApi.ServiceDefaults.csproj" />
+    <Project Path="Alex-Fuh.Software.AniiApi/Alex-Fuh.Software.AniiApi.csproj" />
+  </Folder>
+</Solution>
