@@ -20,6 +20,7 @@ public class Program
         builder.Services.AddOpenApi();
         
         builder.Services.AddScoped<ISearchService, SearchService>();
+        builder.Services.AddScoped<IDashboardService, DashboardService>();
 
         var app = builder.Build();
 

@@ -1,0 +1,19 @@
+{
+  "runtime": "Net100",
+  "documentGenerator": {
+    "fromDocument": {
+      "url": "http://localhost:5142/openapi/v1.json"
+    }
+  },
+  "codeGenerators": {
+    "openApiToCSharpClient": {
+      "className": "AniiApiClient",
+      "namespace": "Alex-Fuh.Software.AniiApi.Client",
+      "output": "AniiApiClient.g.cs",
+      "jsonLibrary": "SystemTextJson",
+      "generateClientInterfaces": true,
+      "injectHttpClient": true,
+      "useBaseUrl": false
+    }
+  }
+}
