@@ -1,4 +1,5 @@
-﻿using Alex_Fuh.Software.AniiApi.Services.Interfaces;
+﻿using Alex_Fuh.Software.AniiApi.Dto;
+using Alex_Fuh.Software.AniiApi.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Alex_Fuh.Software.AniiApi.Controllers;
@@ -15,9 +16,9 @@ public class DashboardController : ControllerBase
         }
 
     [HttpGet]
-    public async Task<IActionResult> LoadForFrontPage(int from, int to)
+    public async Task<ActionResult<LoadFrontPageResponse>> LoadForFrontPage(int from, int to)
     {
         var result = await _dashboardService.LoadingTitelsForFrontPageAsync(from, to);
-        return Content(result, "application/json");
+        return Ok(result);
     }
 }

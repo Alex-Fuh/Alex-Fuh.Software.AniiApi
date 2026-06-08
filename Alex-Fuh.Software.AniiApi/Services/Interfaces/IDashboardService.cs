@@ -1,6 +1,8 @@
-﻿namespace Alex_Fuh.Software.AniiApi.Services.Interfaces;
+﻿using Alex_Fuh.Software.AniiApi.Dto;
+
+namespace Alex_Fuh.Software.AniiApi.Services.Interfaces;
 
 public interface IDashboardService
 {
-    public Task<string> LoadingTitelsForFrontPageAsync(int from, int to);
+    public Task<LoadFrontPageResponse> LoadingTitelsForFrontPageAsync(int from, int to);
 }

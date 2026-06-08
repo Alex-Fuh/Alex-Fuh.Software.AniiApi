@@ -1,12 +1,13 @@
 ﻿using System.Text;
 using System.Text.Json;
+using Alex_Fuh.Software.AniiApi.Dto;
 using Alex_Fuh.Software.AniiApi.Services.Interfaces;
 
 namespace Alex_Fuh.Software.AniiApi.Services;
 
 public class DashboardService : IDashboardService
 {
-    public async Task<string> LoadingTitelsForFrontPageAsync(int from, int to)
+    public async Task<LoadFrontPageResponse> LoadingTitelsForFrontPageAsync(int from, int to)
     {
         var loadQuery = @"query ($page: Int, $perPage: Int) {
               Page(page: $page, perPage: $perPage) {
@@ -43,13 +44,14 @@ public class DashboardService : IDashboardService
 
         var response = await client.PostAsync("https://graphql.anilist.co", content);
 
-        var responseBody = await response.Content.ReadAsStringAsync();
-
         if (!response.IsSuccessStatusCode)
         {
-            throw new Exception(responseBody);
+            var errorBody = await response.Content.ReadAsStringAsync();
+            throw new Exception(errorBody);
         }
 
-        return responseBody;
+        return await response.Content
+            .ReadFromJsonAsync<LoadFrontPageResponse>();
+        
     }
 }

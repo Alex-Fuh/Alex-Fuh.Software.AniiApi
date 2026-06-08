@@ -1,5 +1,5 @@
 {
-  "runtime": "Net100",
+  "runtime": "Net90",
   "documentGenerator": {
     "fromDocument": {
       "url": "http://localhost:5142/openapi/v1.json"
