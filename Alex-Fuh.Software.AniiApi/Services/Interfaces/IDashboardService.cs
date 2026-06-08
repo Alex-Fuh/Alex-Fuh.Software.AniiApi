@@ -2,5 +2,5 @@
 
 public interface IDashboardService
 {
-    public Task<string> LoadingTitelsForFrontPageAsync();
+    public Task<string> LoadingTitelsForFrontPageAsync(int from, int to);
 }

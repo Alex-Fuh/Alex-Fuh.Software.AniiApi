@@ -15,9 +15,9 @@ public class DashboardController : ControllerBase
         }
 
     [HttpGet]
-    public async Task<IActionResult> LoadForFrontPage()
+    public async Task<IActionResult> LoadForFrontPage(int from, int to)
     {
-        var result = await _dashboardService.LoadingTitelsForFrontPageAsync();
+        var result = await _dashboardService.LoadingTitelsForFrontPageAsync(from, to);
         return Content(result, "application/json");
     }
 }

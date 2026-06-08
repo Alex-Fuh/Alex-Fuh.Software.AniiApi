@@ -1,7 +1,52 @@
 ﻿@page "/"
+@inject IJSRuntime JS
+@implements IAsyncDisposable
 
-<PageTitle>Home</PageTitle>
+<h1>Home</h1>
 
-<h1>Hello, world!</h1>
+<div>
+    Scroll nach unten ...
 
-Welcome to your new app.
+</div>
+
+@if (_hasReachedBottom)
+{
+    <p>Du bist ganz unten angekommen.</p>
+}
+
+<div @ref="_bottomElement" style="height: 1px;"></div>
+
+@code {
+    private ElementReference _bottomElement;
+    private DotNetObjectReference<Home>? _dotNetRef;
+    private bool _hasReachedBottom;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (!firstRender)
+            return;
+
+        _dotNetRef = DotNetObjectReference.Create(this);
+
+        await JS.InvokeVoidAsync(
+            "scrollBottomTracker.start",
+            _bottomElement,
+            _dotNetRef
+        );
+    }
+
+    [JSInvokable]
+    public Task ReachedBottom()
+    {
+        _hasReachedBottom = true;
+        StateHasChanged();
+
+        return Task.CompletedTask;
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        await JS.InvokeVoidAsync("scrollBottomTracker.stop");
+        _dotNetRef?.Dispose();
+    }
+}

@@ -6,7 +6,7 @@ namespace Alex_Fuh.Software.AniiApi.Services;
 
 public class DashboardService : IDashboardService
 {
-    public async Task<string> LoadingTitelsForFrontPageAsync()
+    public async Task<string> LoadingTitelsForFrontPageAsync(int from, int to)
     {
         var loadQuery = @"query ($page: Int, $perPage: Int) {
               Page(page: $page, perPage: $perPage) {
@@ -14,6 +14,9 @@ public class DashboardService : IDashboardService
                   title { romaji english }
                   averageScore
                   popularity
+                  coverImage {
+                    extraLarge
+                  }          
                 }
               }
             }";
@@ -23,8 +26,8 @@ public class DashboardService : IDashboardService
             query = loadQuery,
             variables = new
             {
-                page = 1,
-                perPage = 30
+                page = from,
+                perPage = to
             }
         };
         

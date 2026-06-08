@@ -8,7 +8,7 @@
   "codeGenerators": {
     "openApiToCSharpClient": {
       "className": "AniiApiClient",
-      "namespace": "Alex-Fuh.Software.AniiApi.Client",
+      "namespace": "Alex_Fuh.Software.AniiApi.Client",
       "output": "AniiApiClient.g.cs",
       "jsonLibrary": "SystemTextJson",
       "generateClientInterfaces": true,

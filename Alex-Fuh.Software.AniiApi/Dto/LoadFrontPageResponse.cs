@@ -28,6 +28,8 @@ public class MediaDto
     public int ? AverageScore { get; set; }
     [JsonPropertyName("popularity")]
     public int ? Popularity { get; set; }
+    [JsonPropertyName("coverImage")]
+    public CoverImage? CoverImage { get; set; }
 }
 
 public class TitleDto
@@ -36,4 +38,10 @@ public class TitleDto
     public string? Romaji { get; set; }
     [JsonPropertyName("english")]
     public string? English { get; set; }
+}
+
+public class CoverImage
+{
+    [JsonPropertyName("extraLarge")]
+    public string? Url { get; set; }
 }
