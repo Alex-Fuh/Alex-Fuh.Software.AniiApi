@@ -15,4 +15,8 @@
       <_ContentIncludedByDefault Remove="wwwroot\js\scroll-bottom.js" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\Alex-Fuh.Software.AniiApi.Client\Alex-Fuh.Software.AniiApi.Client.csproj" />
+    </ItemGroup>
+
 </Project>

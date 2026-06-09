@@ -1,5 +1,6 @@
 ﻿@page "/"
 @inject IJSRuntime JS
+@inject IAniiApiClient ApiClient
 @implements IAsyncDisposable
 
 <h1>Home</h1>
@@ -52,7 +53,19 @@
     <p>Lorem</p>
 
     <p>Lorem</p>
-
+    
+    @if (data.Data.Page.Media == null)
+    {
+        <div>Lade Daten...</div>
+    }
+    else
+    {
+        foreach (var anime in data.Data.Page.Media)
+        {
+            <h1>@anime.Title.English</h1>
+            <img src="@anime.CoverImage.ExtraLarge"/>
+        }
+    }
 
 </div>
 
@@ -64,13 +77,18 @@
 <div @ref="_bottomElement" style="height: 1px;"></div>
 
 @code {
+
+    private LoadFrontPageResponse data;
+    private int test1 = 1;
+    private int test2 = 5;
     
     
-    
-    
-    
-    
-    
+    protected override async Task OnInitializedAsync()
+    {
+        data = await ApiClient.DashboardAsync(test1, test2);
+        
+    }
+
     
     
     
@@ -98,6 +116,8 @@
         _hasReachedBottom = true;
         StateHasChanged();
 
+        test1 += 5;
+        test2 += 5;
         return Task.CompletedTask;
     }
 

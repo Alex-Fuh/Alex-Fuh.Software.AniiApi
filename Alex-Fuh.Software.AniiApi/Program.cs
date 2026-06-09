@@ -11,6 +11,21 @@ public class Program
 
         builder.AddServiceDefaults();
 
+        
+        //blazor
+        builder.Services.AddCors(options =>
+        {
+            options.AddPolicy("Frontend", policy =>
+            {
+                policy
+                    .WithOrigins("http://localhost:5156")
+                    .AllowAnyHeader()
+                    .AllowAnyMethod();
+            });
+        });
+        
+        
+        
         builder.Services.AddControllers()
             .AddJsonOptions(options =>
             {
@@ -30,6 +45,9 @@ public class Program
             app.MapScalarApiReference();
         }
 
+        //blazor
+        app.UseCors("Frontend");
+        
         app.UseHttpsRedirection();
 
         app.UseAuthorization();
