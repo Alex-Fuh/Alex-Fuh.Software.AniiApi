@@ -1,0 +1,36 @@
+.title-card-container {
+    --card: 11rem;                         
+    display: grid;
+    grid-template-columns: repeat(auto-fill, var(--card));
+    justify-content: center;               
+    gap: 1.25rem 1rem;
+    margin-right: 10%;
+    margin-left: 10%;
+    margin-top: 5%;
+}
+
+.title-card {
+    container-type: inline-size;          
+    display: flex;
+    flex-direction: column;
+}
+
+.title-image {
+    width: 100%;
+    aspect-ratio: 5 / 7;                    
+    object-fit: cover;
+    border-radius: 6px;
+    display: block;
+}
+
+.title {
+    margin: 0.5em 0 0;
+    font-size: 110%;
+    line-height: 1.3;
+    text-align: left;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;                  /* fester Platz: max. 2 Zeilen */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    overflow-wrap: anywhere;
+}

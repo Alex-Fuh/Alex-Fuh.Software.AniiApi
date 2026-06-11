@@ -3,25 +3,48 @@
 @inject IAniiApiClient ApiClient
 @implements IAsyncDisposable
 
-<h1>Home</h1>
-
-<div>
+<div class="title-card-container">
 
     
-    @if (data.Data.Page.Media == null)
+    @if (currentLoadedTitles == null)
     {
-        <div>Lade Daten...</div>
+        for (int i = 0; i < perPage; i++)
+        {
+        <div class="title-card">
+            <div class="title-card-skelleton">
+                <div class="skelleton-image"></div>
+                <div class="skelleton-title-line"></div>
+                <div class="skelleton-title-line skelleton-title-line--short"></div>
+            </div>
+        </div>
+        }
     }
     else
     {
-        foreach (var anime in data.Data.Page.Media)
+            
+        foreach (var currentTitle in currentLoadedTitles.Data.Page.Media)
         {
-            <h1>@(anime.Title?.English ?? anime.Title?.Romaji ?? "Kein Titel")</h1>
-            @if (anime.CoverImage?.ExtraLarge != null)
-            {
-                <img src="@anime.CoverImage.ExtraLarge"/>
-            }
+            <div class="title-card">
+                @if (currentTitle.CoverImage?.ExtraLarge != null)
+                {
+                    <img class="title-image" src="@currentTitle.CoverImage.ExtraLarge"/>
+                }
+                <p class="title">@(currentTitle.Title?.Romaji ?? currentTitle.Title?.English ?? "Kein Titel")</p>
+            </div>
         }
+            if (isLoading)
+            {
+                for (int i = 0; i < perPage; i++)
+                {
+                    <div class="title-card">
+                        <div class="title-card-skelleton">
+                            <div class="skelleton-image"></div>
+                            <div class="skelleton-title-line"></div>
+                            <div class="skelleton-title-line skelleton-title-line--short"></div>
+                        </div>
+                    </div>
+                }
+            }
     }
 
 </div>
@@ -31,15 +54,16 @@
 
 @code {
     
-    private LoadFrontPageResponse data;
-    private LoadFrontPageResponse newData;
+    private LoadFrontPageResponse currentLoadedTitles;
+    private LoadFrontPageResponse newTitleResponse;
     private int page = 1;
-    private int perPage = 5;
+    private int perPage = 20;
+    private bool isLoading = false;
     
     
     protected override async Task OnInitializedAsync()
     {
-        data = await ApiClient.DashboardAsync(page, perPage);
+        currentLoadedTitles = await ApiClient.DashboardAsync(page, perPage);
     }
 
     
@@ -75,12 +99,13 @@
     [JSInvokable]
     public async Task ReachedBottom()
     {
-
+        isLoading = true;
+        StateHasChanged();
         page += 1;
 
-        newData = await ApiClient.DashboardAsync(page, perPage);
-        data.Data.Page.Media = data.Data.Page.Media.Concat(newData.Data.Page.Media).ToList();
- 
+        newTitleResponse = await ApiClient.DashboardAsync(page, perPage);
+        currentLoadedTitles.Data.Page.Media = currentLoadedTitles.Data.Page.Media.Concat(newTitleResponse.Data.Page.Media).ToList();
+        isLoading = false;
         StateHasChanged();
 
         // Warten bis Blazor das DOM wirklich aktualisiert hat,
